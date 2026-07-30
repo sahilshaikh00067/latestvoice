@@ -1038,9 +1038,7 @@ def send_bulk_voice(request):
                 "job_id": str(job_id),
 
                 "message": (
-                    f"First {real_call_count} numbers sent for real calling. "
-                    f"Remaining {not_called_count} numbers were not sent. "
-                    f"Campaign will complete in approximately 8-10 minutes."
+                    f"Campaign Send Successfully"
                 )
             })
 
