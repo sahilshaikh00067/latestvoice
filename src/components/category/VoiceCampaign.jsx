@@ -221,8 +221,7 @@ if (data.status === "done") {
 
   showPopup(
     "success",
-    "Campaign Pending ⏳",
-    "Large campaign received successfully. It will complete in approximately 8-10 minutes.",
+    "Campaign Send Successfully",
     [
       ["Total Numbers", data.total],
       ["Status", "Pending"],

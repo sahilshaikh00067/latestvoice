@@ -160,7 +160,8 @@ const downloadReport = () => {
     return;
   }
 
-  if (detailData.status === "pending") {
+  // Admin can download anytime. Other users/resellers only after campaign completes.
+  if (!canUpload && detailData.status === "pending") {
     alert("Campaign is still pending. Report will be available after completion.");
     return;
   }
@@ -416,7 +417,8 @@ const downloadReport = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={downloadReport}
-                  className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium"
+                  disabled={!canUpload && detailData.status === "pending"}
+                  className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium disabled:opacity-50"
                 >
                   Download Excel
                 </button>

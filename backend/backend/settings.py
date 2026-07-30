@@ -78,10 +78,6 @@ CORS_ALLOWED_ORIGINS = [
     "https://voicechannel.co.in",
     "https://www.voicechannel.co.in",
     "https://latestvoice.vercel.app",
-
-    # Local React/Vite
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -94,11 +90,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://voicechannel.co.in",
     "https://www.voicechannel.co.in",
     "https://latestvoice.vercel.app",
-
-    # Local React/Vite
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
 ]
+
 # ---------------------------------------------------
 # HTTPS
 # ---------------------------------------------------
