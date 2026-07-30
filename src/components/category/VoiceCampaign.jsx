@@ -222,8 +222,11 @@ if (data.status === "done") {
   showPopup(
     "success",
     "Campaign Send Successfully",
+
     [
+
       ["Total Numbers", data.total],
+      
       ["Status", "Pending"],
     ]
   );
