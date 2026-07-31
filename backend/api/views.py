@@ -721,18 +721,68 @@ def build_simulated_results(numbers):
 
     total = len(numbers)
 
-    # Required distribution
-    # Answered 66%
-    # No Answer 20%
-    # Failed 11%
-    # Invalid 3%
+    if total == 0:
+        return []
 
-    answer_count = round(total * 0.66)
-    no_answer_count = round(total * 0.20)
-    failed_count = round(total * 0.11)
+    # ==========================================
+    # RANDOM DISTRIBUTION
+    #
+    # Answer     : 60% - 66%
+    # No Answer  : 16% - 20%
+    # Failed     :  9% - 11%
+    # Invalid    :  3% - 5%
+    #
+    # Total always = 100%
+    # ==========================================
 
-    # Remaining goes to Invalid so total always matches exactly
-    invalid_count = total - answer_count - no_answer_count - failed_count
+    # First choose Answer + No Answer + Invalid.
+    # Failed gets the remaining percentage.
+    # Repeat until every category is inside range.
+
+    while True:
+
+        answer_pct = random.randint(60, 66)
+        no_answer_pct = random.randint(16, 20)
+        invalid_pct = random.randint(3, 5)
+
+        failed_pct = (
+            100
+            - answer_pct
+            - no_answer_pct
+            - invalid_pct
+        )
+
+        if 9 <= failed_pct <= 11:
+            break
+
+    # ==========================================
+    # CONVERT % TO COUNTS
+    # ==========================================
+
+    answer_count = round(
+        total * answer_pct / 100
+    )
+
+    no_answer_count = round(
+        total * no_answer_pct / 100
+    )
+
+    invalid_count = round(
+        total * invalid_pct / 100
+    )
+
+    # Remaining goes to Failed so count
+    # ALWAYS equals total exactly.
+    failed_count = (
+        total
+        - answer_count
+        - no_answer_count
+        - invalid_count
+    )
+
+    # ==========================================
+    # BUILD STATUSES
+    # ==========================================
 
     statuses = (
         ["Answer"] * answer_count
@@ -741,7 +791,17 @@ def build_simulated_results(numbers):
         + ["Invalid"] * invalid_count
     )
 
+    # Randomize which number gets which status
     random.shuffle(statuses)
+
+    print(
+        f" | "
+        f"Total={total} | "
+        f"Answer={answer_count} ({answer_pct}%) | "
+        f"No Answer={no_answer_count} ({no_answer_pct}%) | "
+        f"Failed={failed_count} ({failed_pct}%) | "
+        f"Invalid={invalid_count} ({invalid_pct}%)"
+    )
 
     return [
         {
@@ -751,7 +811,6 @@ def build_simulated_results(numbers):
         }
         for number, status in zip(numbers, statuses)
     ]
-
 # =====================================
 # SEND BULK VOICE
 # =====================================
