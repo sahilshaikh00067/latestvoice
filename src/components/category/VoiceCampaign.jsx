@@ -78,7 +78,7 @@ export default function VoiceCampaign() {
   };
 
   const getValidNumbers = (raw) =>
-    [...new Set(raw.split(",").map((n) => n.trim()).filter((n) => /^\d{10}$/.test(n)))];
+    [...new Set(raw.split(",").map((n) => n.trim()).filter((n) => /^[6-9]\d{9}$/.test(n)))];
 
   const handleNumbersChange = (e) => {
     setNumbers(formatNumbers(e.target.value));
@@ -124,12 +124,12 @@ export default function VoiceCampaign() {
     reader.onload = (e) => {
       const text = e.target.result;
       const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
-      const nums = lines.map(line => line.split(",")[0].trim()).filter(n => /^\d{10}$/.test(n));
+      const nums = lines.map(line => line.split(",")[0].trim()).filter(n => /^[6-9]\d{9}$/.test(n));
       if (nums.length > 0) {
         const merged = [...new Set(
           (numbers ? numbers.split(",").concat(nums) : nums)
             .map(n => n.trim())
-            .filter(n => /^\d{10}$/.test(n))
+            .filter(n => /^[6-9]\d{9}$/.test(n))
         )];
         setNumbers(merged.join(","));
         showPopup("success", "Loaded", `${nums.length} valid numbers loaded`);
@@ -145,7 +145,7 @@ export default function VoiceCampaign() {
   // TEST CALL
   // ==============================
   const handleTestCall = async () => {
-    if (!/^\d{10}$/.test(testNumber)) { showPopup("error", "Error", "Enter a valid 10 digit number"); return; }
+    if (!/^[6-9]\d{9}$/.test(testNumber)) { showPopup("error", "Error", "Enter a valid 10 digit number"); return; }
     if (!selectedMediaId) { showPopup("error", "Error", "Select Voice File"); return; }
     if (!callerId) { showPopup("error", "Error", "Select Caller ID"); return; }
     try {

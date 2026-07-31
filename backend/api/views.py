@@ -87,16 +87,27 @@ def notify_async(message, number=ADMIN_WHATSAPP_NUMBER):
 # CLEAN NUMBER
 # =====================================
 def clean_number(number):
-    num    = str(number).strip()
-    digits = ''.join(filter(str.isdigit, num))
+    num = str(number).strip()
+
+    # Keep digits only
+    digits = "".join(filter(str.isdigit, num))
+
     if not digits:
         return None
+
+    # +91 / 91XXXXXXXXXX -> XXXXXXXXXX
     if digits.startswith("91") and len(digits) == 12:
         digits = digits[2:]
+
+    # Must be exactly 10 digits
     if len(digits) != 10:
         return None
-    return digits
 
+    # Indian mobile number must start with 6, 7, 8 or 9
+    if digits[0] not in ("6", "7", "8", "9"):
+        return None
+
+    return digits
 
 # =====================================
 # AUTO-COMPLETE CAMPAIGN (pending -> done)
