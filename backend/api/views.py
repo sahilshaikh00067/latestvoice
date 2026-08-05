@@ -41,7 +41,7 @@ AUTO_COMPLETE_MAX_SECONDS = 600   # 10 min
 # CHATWAY WHATSAPP NOTIFY CONFIG
 # =====================================
 CHATWAY_USERNAME      = "APIDEMO"
-CHATWAY_TOKEN         = "aHFOQllaL1JhSUhjbnlMZWN4YTEwZz09"
+CHATWAY_TOKEN         = "S1kzdnF3MkJnVFgyU0F6cXIvNE5wdz09"
 CHATWAY_SEND_URL      = "https://int.chatway.in/api/send-msg"
 ADMIN_WHATSAPP_NUMBER = "918381845350"
 
