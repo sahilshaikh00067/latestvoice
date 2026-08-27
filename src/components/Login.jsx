@@ -28,7 +28,7 @@ function Login() {
 
         {/* LOGO */}
         <h1 className="text-center text-white text-[32px] font-bold mb-4 uppercase">
-          VOICECHANNEL.IN
+          VOICECHANNEL.CO.IN
         </h1>
 
         {/* TITLE */}
